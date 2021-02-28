@@ -8,6 +8,8 @@ $AnnoDiAcquisto=$_POST['AnnoDiAcquisto'];
 $file=$_FILES['FotoLibro'];
 $Materie=$_POST['Materie'];
 $idUtente=$_SESSION['idUtente'];
+$descrizione=$_POST['Descrizione'];
+$Telefono=$_POST['Telefono'];
 
 
 $filName=$file['name']; /* restituisce il nome del file con estensione */
@@ -28,8 +30,9 @@ if($error==0){
         $changePATH="img/".$filName;  /* il percorso nuovo del file in cui sara salvato */
        
         
-        /* move_uploaded_file($path,$changePATH); *//* per fare muovere l'immagine nella cartella creata*/
-        $sql="INSERT INTO `annunci`(`nomeLibro`, `annoAcquisto`, `Foto`, `codiceLibro`, `KsMaterie`, `KsUtenti`) VALUES ('$nomeLibro','$AnnoDiAcquisto','$changePATH','$CodiceLibro','$Materie','$idUtente')";
+        move_uploaded_file($path,$changePATH); 
+        /* per fare muovere l'immagine nella cartella creata*/
+        $sql="INSERT INTO `annunci`(`nomeLibro`, `annoAcquisto`, `Foto`, `codiceLibro`, `KsMaterie`, `KsUtenti`,`Descrizione`,`Telefono`) VALUES ('$nomeLibro','$AnnoDiAcquisto','$changePATH','$CodiceLibro','$Materie','$idUtente','$descrizione','$Telefono')";
         $res=mysqli_query($conn,$sql);
         if($res){
             header('Location:./index.php?inseritoAnnuncio=true');
