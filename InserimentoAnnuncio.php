@@ -2,6 +2,8 @@
 session_start();
 include './db.php';
 if($_SERVER['REQUEST_METHOD']=='POST'){
+
+
 $nomeLibro=$_POST['NomeLibro'];
 $CodiceLibro=$_POST['CodiceLibro'];
 $AnnoDiAcquisto=$_POST['AnnoDiAcquisto'];
@@ -9,7 +11,10 @@ $file=$_FILES['FotoLibro'];
 $Materie=$_POST['Materie'];
 $idUtente=$_SESSION['idUtente'];
 $descrizione=$_POST['Descrizione'];
-$Telefono=$_POST['Telefono'];
+
+$_SESSION['idUtenteAnnuncioPubblicato']=$idUtente; /* visto che quando il utente pubblica un annuncio viene mandato su questa pagina e ho fatto 
+in modo che posso salvare il suo id usando la variable globale session ma prendo id solo chi pubblica l'annuncio */
+
 
 
 $filName=$file['name']; /* restituisce il nome del file con estensione */
@@ -32,12 +37,12 @@ if($error==0){
         
         move_uploaded_file($path,$changePATH); 
         /* per fare muovere l'immagine nella cartella creata*/
-        $sql="INSERT INTO `annunci`(`nomeLibro`, `annoAcquisto`, `Foto`, `codiceLibro`, `KsMaterie`, `KsUtenti`,`Descrizione`,`Telefono`) VALUES ('$nomeLibro','$AnnoDiAcquisto','$changePATH','$CodiceLibro','$Materie','$idUtente','$descrizione','$Telefono')";
+        $sql="INSERT INTO `annunci`(`nomeLibro`, `annoAcquisto`, `Foto`, `codiceLibro`, `KsMaterie`, `KsUtenti`) VALUES ('$nomeLibro','$AnnoDiAcquisto','$changePATH','$CodiceLibro','$Materie','$idUtente')";
         $res=mysqli_query($conn,$sql);
         if($res){
-            header('Location:./index.php?inseritoAnnuncio=true');
+            header("Location:./Shop.php?inseritoAnnuncio=true");
         }else{
-            header('Locatio:./index.php?inseritoAnnuncioFalito=true');
+            header("Location:./Shop.php?inseritoAnnuncioFalito=true");
         }
     }else{
         ?>

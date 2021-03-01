@@ -23,11 +23,9 @@ echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">
                         </a>
                        <ul id="Main" class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#RegistratiModal"
-                                    href="#">Registrati</a></li>
+                                   >Registrati</a></li>
                             <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#LoginModal"
-                                    href="#">Accedi</a></li>
-
-                        </ul>
+                                    >Accedi</a></li></ul>
                         </li>';
                     }
                    echo '<li class="nav-item">
