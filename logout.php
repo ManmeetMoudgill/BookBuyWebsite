@@ -1,6 +1,6 @@
 <?php
 session_start();
-unset($_SESSION['idUtente']);
+/* unset($_SESSION['idUtente']); */
 unset($_SESSION['username']);
 unset($_SESSION['loggedIn']);
 

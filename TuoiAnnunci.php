@@ -21,15 +21,13 @@ session_start();
    <?php
     
     include './navbar.php';
-/*     if(isset($_SESSION['idUtenteAnnuncioPubblicato'])){
+    if(isset($_SESSION['idUtenteAnnuncioPubblicato'])){
     $idUtenteAnnu=$_SESSION['idUtenteAnnuncioPubblicato'];
-    
-  } */
+   
+  }
   /* qui ho inserito il valore della variabile globale nella varibale locale ho usato if per verificare se la variable session che appena 
   creato nel file precende essiste o no se essite allora lo salvi nella variable chiamata $idUtenteAnnu*/
-
-  $idUtente= $_SESSION['idUtente'];
-
+  
     if(isset($_GET['inseritoAnnuncioFalito']) && $_GET['inseritoAnnuncioFalito'] == true){
       $alert= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
       <strong>Messaggio</strong>Annucio del libro non è stato registrato, Fallito!.
@@ -68,10 +66,10 @@ session_start();
         <?php
 
         include './db.php';
-        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente";
+        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente AND utenti.idUtente=$idUtenteAnnu";
         $res=mysqli_query($conn,$sql);
         while($row=mysqli_fetch_assoc($res)){
-          
+
             $nomeUtente=$row['Nome'];
             $emailUtente=$row['Email'];
             $cognomeUtente=$row['Cognome'];
@@ -104,7 +102,7 @@ session_start();
             </div>
             </div>';
         }
-       
+        
         ?>
     </div>
 </div>

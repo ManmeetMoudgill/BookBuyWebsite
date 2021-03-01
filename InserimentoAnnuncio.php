@@ -12,7 +12,7 @@ $Materie=$_POST['Materie'];
 $idUtente=$_SESSION['idUtente'];
 $descrizione=$_POST['Descrizione'];
 
-$_SESSION['idUtenteAnnuncioPubblicato']=$idUtente; /* visto che quando il utente pubblica un annuncio viene mandato su questa pagina e ho fatto 
+/* $_SESSION['idUtenteAnnuncioPubblicato']=$idUtente; */ /* visto che quando il utente pubblica un annuncio viene mandato su questa pagina e ho fatto 
 in modo che posso salvare il suo id usando la variable globale session ma prendo id solo chi pubblica l'annuncio */
 
 
