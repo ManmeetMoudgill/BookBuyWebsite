@@ -2,6 +2,7 @@
 
 
 session_start();
+$idUtente= $_SESSION['idUtente'];
 
 ?>
 
@@ -21,55 +22,17 @@ session_start();
    <?php
     
     include './navbar.php';
-    if(isset($_SESSION['idUtenteAnnuncioPubblicato'])){
-    $idUtenteAnnu=$_SESSION['idUtenteAnnuncioPubblicato'];
-   
-  }
-  /* qui ho inserito il valore della variabile globale nella varibale locale ho usato if per verificare se la variable session che appena 
-  creato nel file precende essiste o no se essite allora lo salvi nella variable chiamata $idUtenteAnnu*/
-  
-    if(isset($_GET['inseritoAnnuncioFalito']) && $_GET['inseritoAnnuncioFalito'] == true){
-      $alert= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
-      <strong>Messaggio</strong>Annucio del libro non è stato registrato, Fallito!.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>';
-    echo $alert;
-    if($alert!=""){
-      ?>
-        <script>
-        setTimeout(() => {
-            window.location = "./Shop.php";
-        }, 2000)
-        </script>
-        <?php
-    }
-  }else if(isset($_GET['inseritoAnnuncio']) && $_GET['inseritoAnnuncio'] == true){
-    $alert1= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
-    <strong>Messaggio</strong>Annuncio del libro è stato registrato!!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>';
-  echo $alert1;
-  if($alert1!=""){
-    ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./Shop.php";
-      }, 2000)
-      </script>
-      <?php
-  }
-}
-
+    
 ?>
 <div class="container">
 <div class=" my-2 row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <?php
 
         include './db.php';
-        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente AND utenti.idUtente=$idUtenteAnnu";
+        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente and utenti.idUtente=$idUtente";
         $res=mysqli_query($conn,$sql);
         while($row=mysqli_fetch_assoc($res)){
-
+          
             $nomeUtente=$row['Nome'];
             $emailUtente=$row['Email'];
             $cognomeUtente=$row['Cognome'];
@@ -102,7 +65,7 @@ session_start();
             </div>
             </div>';
         }
-        
+       
         ?>
     </div>
 </div>

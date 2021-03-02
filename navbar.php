@@ -34,7 +34,9 @@ echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">
                     if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){
                         echo ' <li class="nav-item">
                         <a class="nav-link text-dark"  tabindex="-1"> Benvenuto '.$_SESSION['username'].'</a>
-                    </li>';
+                    </li> <li class="nav-item">
+                    <a class="nav-link" href="./TuoiAnnunci.php">I Tuoi Annunci</a>
+                </li>';
                     }
                     
                     
