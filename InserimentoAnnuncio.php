@@ -11,6 +11,7 @@ $file=$_FILES['FotoLibro'];
 $Materie=$_POST['Materie'];
 $idUtente=$_SESSION['idUtente'];
 $descrizione=$_POST['Descrizione'];
+$prezzo=$_POST['Prezzo'];
 
 /* $_SESSION['idUtenteAnnuncioPubblicato']=$idUtente; */ /* visto che quando il utente pubblica un annuncio viene mandato su questa pagina e ho fatto 
 in modo che posso salvare il suo id usando la variable globale session ma prendo id solo chi pubblica l'annuncio */
@@ -37,7 +38,8 @@ if($error==0){
         
         move_uploaded_file($path,$changePATH); 
         /* per fare muovere l'immagine nella cartella creata*/
-        $sql="INSERT INTO `annunci`(`nomeLibro`, `annoAcquisto`, `Foto`, `codiceLibro`, `KsMaterie`, `KsUtenti`) VALUES ('$nomeLibro','$AnnoDiAcquisto','$changePATH','$CodiceLibro','$Materie','$idUtente')";
+      
+        $sql="INSERT INTO `annunci`(`nomeLibro`, `annoAcquisto`, `Foto`, `codiceLibro`, `KsMaterie`, `KsUtenti`, `Descrizione`, `Prezzo`) VALUES ('$nomeLibro','$AnnoDiAcquisto','$changePATH','$CodiceLibro','$Materie','$idUtente','$descrizione','$prezzo')";
         $res=mysqli_query($conn,$sql);
         if($res){
             header("Location:./Shop.php?inseritoAnnuncio=true");

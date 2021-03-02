@@ -22,14 +22,44 @@ $idUtente= $_SESSION['idUtente'];
    <?php
     
     include './navbar.php';
-    
+    if(isset($_GET['annuncioEliminato']) && $_GET['annuncioEliminato'] == true){
+      $alert= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
+      <strong>Messaggio</strong>Annucio è stato Eliminato!.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    echo $alert;
+    if($alert!=""){
+      ?>
+        <script>
+        setTimeout(() => {
+            window.location = "./TuoiAnnunci.php";
+        }, 2000)
+        </script>
+        <?php
+    }
+  }else  if(isset($_GET['annuncioEliminatoFailed']) && $_GET['annuncioEliminatoFailed'] == true){
+    $alert1= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
+    <strong>Messaggio</strong>Annucio Non è stato Eliminato!.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>';
+  echo $alert1;
+  if($alert1!=""){
+    ?>
+      <script>
+      setTimeout(() => {
+          window.location = "./TuoiAnnunci.php";
+      }, 2000)
+      </script>
+      <?php
+  }
+}
 ?>
 <div class="container">
 <div class=" my-2 row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <?php
 
         include './db.php';
-        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente and utenti.idUtente=$idUtente";
+        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.idAnnuncio,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente and utenti.idUtente=$idUtente";
         $res=mysqli_query($conn,$sql);
         while($row=mysqli_fetch_assoc($res)){
           
@@ -41,7 +71,7 @@ $idUtente= $_SESSION['idUtente'];
             $Foto=$row['Foto'];
             $annoAcquisto=$row['annoAcquisto'];
             $Descrizione=$row['Descrizione'];
-
+            $idAnnuncio=$row['idAnnuncio'];
 
             
         
@@ -57,7 +87,7 @@ $idUtente= $_SESSION['idUtente'];
                   <p class="card-text"><b>'.$Descrizione.'</b></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" data-toggle="modal" data-target="#InfoModal" class="btn btn-sm btn-outline-secondary">Info ℹ</button>
+                      <button type="button"  class="btn btn-sm btn-danger"><a class="text-decoration-none text-light" href="./DeleteAnnuncio.php?idAnnuncio='.$idAnnuncio.'">Delete</a></button>
                     </div>
                     <small class="text-muted">9 mins</small>
                   </div>
@@ -73,26 +103,7 @@ $idUtente= $_SESSION['idUtente'];
 <!-- Studente who posted the ads Modal -->
 
 
-<!-- Modal -->
-<div class="modal fade" class="InfoModal" tabindex="-1" role="dialog" aria-labelledby="InfoModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="InfoModalLabel">Informazione ℹ </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <h6 class="text-damger">Studente Informazione</h6>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

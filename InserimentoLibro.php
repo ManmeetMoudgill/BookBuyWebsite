@@ -70,6 +70,10 @@ while($dataFetched=mysqli_fetch_assoc($res)){
   <label for="exampleInputPassword1" class="form-label">Descrizione</label>
   <input type="text" class="form-control" name="Descrizione" >
 </div>
+<div class="mb-3">
+<label for="exampleInputPassword1" class="form-label">Prezzo</label>
+<input type="number" class="form-control" name="Prezzo" >
+</div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
   </form>

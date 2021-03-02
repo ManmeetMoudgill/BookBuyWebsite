@@ -18,15 +18,12 @@ session_start();
     <title>Shop</title>
   </head>
   <body>
+  
+    <!-- signup modal -->
+    
    <?php
     
     include './navbar.php';
-/*     if(isset($_SESSION['idUtenteAnnuncioPubblicato'])){
-    $idUtenteAnnu=$_SESSION['idUtenteAnnuncioPubblicato'];
-    
-  } */
-  /* qui ho inserito il valore della variabile globale nella varibale locale ho usato if per verificare se la variable session che appena 
-  creato nel file precende essiste o no se essite allora lo salvi nella variable chiamata $idUtenteAnnu*/
 
   $idUtente= $_SESSION['idUtente'];
 
@@ -68,7 +65,7 @@ session_start();
         <?php
 
         include './db.php';
-        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente";
+        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Prezzo,annunci.Descrizione,materie.Materia FROM annunci,utenti,materie where annunci.KsUtenti=utenti.idUtente AND annunci.KsMaterie=materie.idMaterie";
         $res=mysqli_query($conn,$sql);
         while($row=mysqli_fetch_assoc($res)){
           
@@ -80,7 +77,8 @@ session_start();
             $Foto=$row['Foto'];
             $annoAcquisto=$row['annoAcquisto'];
             $Descrizione=$row['Descrizione'];
-
+            $Materie=$row['Materia'];
+            $prezzo=$row['Prezzo'];
 
             
         
@@ -93,6 +91,8 @@ session_start();
                 <h6 class="text-danger"><span class="text-dark">Anno di Acquisto del Libro</span>:<b>'.$annoAcquisto.'</b></h6>
                 <h6 class="text-danger"><span class="text-dark">Pubblicatore</span>:<b>'.$cognomeUtente.' '.$nomeUtente.'</b></h6>
                 <h6 class="text-danger"><span class="text-dark">Email</span>:<b>'.$emailUtente.'</b></h6>
+                <h6 class="text-danger"><span class="text-dark">Materia</span>:<b>'.$Materie.'</b></h6>
+                <h6 class="text-danger"><span class="text-dark">Prezzo del Libro</span>:<b>'.$prezzo.'</b></h6>
                   <p class="card-text"><b>'.$Descrizione.'</b></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
@@ -110,28 +110,112 @@ session_start();
 </div>
 
 <!-- Studente who posted the ads Modal -->
+<div class="modal fade" id="RegistratiModal" tabindex="-1" aria-labelledby="RegistratiModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="RegistratiModalLabel">Registrati </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="./registrazione.php" method="post">
+                        <div class="mb-3">
+                            <label for="nomeInput" class="form-label">Nome</label>
+                            <input type="text" class="form-control" name="Nome" id="Nome" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cognomeInput" class="form-label">Cognome</label>
+                            <input type="text" class="form-control" name="Cognome" id="Cognome"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" name="Email" id="Email"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="Password" id="Password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Conferma Password</label>
+                            <input type="password" class="form-control" name="CPassword" id="CPassword">
+                        </div>
+                        <label for="exampleInputPassword1" class="my-1form-label">Città</label>
+                        <select class="form-select" name="cittaSelect" aria-label="Default select example">
+
+                            <?php
+
+                           
+                            $sql="SELECT * FROM `citta`";
+                            $res=mysqli_query($conn,$sql);
+
+                           
+                           while($dataFetched=mysqli_fetch_assoc($res)){
+                             $idCitta=$dataFetched['idCitta'];
+                             $cittaAll=$dataFetched['nomeCitta'];
+                             echo '<option value="'.$idCitta.'">'.$cittaAll.'</option>';
+                           }
 
 
-<!-- Modal -->
-<div class="modal fade" class="InfoModal" tabindex="-1" role="dialog" aria-labelledby="InfoModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="InfoModalLabel">Informazione ℹ </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <h6 class="text-damger">Studente Informazione</h6>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+                         ?>
+                        </select>
+                        <div class="mb-2">
+                            <label for="viaInput" class="form-label">Via</label>
+                            <input type="text" class="form-control" name="Via" id="Via">
+                        </div>
+                        <div class="mb-2">
+                            <label for="NumeroCivicoInput" class="form-label">Numero Civico</label>
+                            <input type="number" class="form-control" name="NumeroCivico" id="NumeroCivico">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+   
+
+    <!-- login modal here -->
+    <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="LoginModalLabel">Accedi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="./loginHandler.php" method="post">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" name="Email" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="Password" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
