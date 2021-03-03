@@ -65,7 +65,7 @@ session_start();
         <?php
 
         include './db.php';
-        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Prezzo,annunci.Descrizione,materie.Materia FROM annunci,utenti,materie where annunci.KsUtenti=utenti.idUtente AND annunci.KsMaterie=materie.idMaterie";
+        $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.idAnnuncio,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Prezzo,annunci.Descrizione,materie.Materia FROM annunci,utenti,materie where annunci.KsUtenti=utenti.idUtente AND annunci.KsMaterie=materie.idMaterie";
         $res=mysqli_query($conn,$sql);
         while($row=mysqli_fetch_assoc($res)){
           
@@ -79,6 +79,7 @@ session_start();
             $Descrizione=$row['Descrizione'];
             $Materie=$row['Materia'];
             $prezzo=$row['Prezzo'];
+            $idAnnuncio=$row['idAnnuncio'];
 
             
         
@@ -96,7 +97,7 @@ session_start();
                   <p class="card-text"><b>'.$Descrizione.'</b></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" data-toggle="modal" data-target="#InfoModal" class="btn btn-sm btn-outline-secondary">Info ℹ</button>
+                      <button type="button"class="btn btn-sm btn-warning"><a class="text-decoration-none text-light" href="./Template.php?idAnnuncio='.$idAnnuncio.'">Vista</a></button>
                     </div>
                     <small class="text-muted">9 mins</small>
                   </div>

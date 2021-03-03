@@ -1,14 +1,4 @@
-<?php
-include './db.php';
-session_start();
-error_reporting(E_ERROR | E_PARSE);
-$idUtentePubblicatoA=$_SESSION['idUtente'];
 
-
-
-
-
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,81 +8,115 @@ $idUtentePubblicatoA=$_SESSION['idUtente'];
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <style>
-    #anchorDiv{
-        cursor:pointer;
-    }
-    </style>
-    <title>Marconi Libri Usati 📚 </title>
+
+    <title>Informazione Libro 📚  </title>
   </head>
   <body>
-    <?php
-    include './links.php';
-include './navbar.php';
-  if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){
+ <style>
+.mainDiv{
+    padding-top:8rem; 
+    padding-left:5rem;
+}
 
-echo '<div class="container w-75">
-<form  action="./InserimentoAnnuncio.php"  enctype="multipart/form-data" method="post" class="row align-items-center">
-  <div class="mb-3">
-    <label for="NomeLibroEmail1" class="form-label">Nome Libro</label>
-    <input type="text" class="form-control" name="NomeLibro" id="NomeLibro" aria-describedby="NomeLibroHelp">
-   
-  </div>
-  <div class="mb-3">
-  <label for="NomeLibroEmail1" class="form-label">Scegli la Materia</label>
-  <select class="form-select" name="Materie" aria-label="Default select example">
-  <option selected>Inserisci La Materia</option>';
-  $sql="SELECT * FROM `Materie`";
-$res=mysqli_query($conn,$sql);
-
-
-while($dataFetched=mysqli_fetch_assoc($res)){
- $idMaterie=$dataFetched['idMaterie'];
- $Materia=$dataFetched['Materia'];
- echo '<option value="'.$idMaterie.'">'.$Materia.'</option>';
-
-  }
-  echo '</select>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Codice Del Libro</label>
-    <input type="text" class="form-control" name="CodiceLibro" >
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Anno di Acquisto</label>
-    <input type="date" class="form-control" name="AnnoDiAcquisto" >
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Foto del Libro</label>
-    <input type="file" class="form-control" name="FotoLibro" >
-  </div>
-  <div class="mb-3">
-  <label for="exampleInputPassword1" class="form-label">Descrizione</label>
-  <input type="text" class="form-control" name="Descrizione" >
-</div>
-<div class="mb-3">
-<label for="exampleInputPassword1" class="form-label">Prezzo</label>
-<input type="number" class="form-control" name="Prezzo" >
-</div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  </div>';
-  }else{
-      echo '<div class="container my-5">
-      <div class="jumbotron">
-        <h1 class="display-4">Attenzione</h1>
-        <p class="lead">Devi Registrati pima di inserire Annuncio</p>
-        <a id="anchorDiv" class="text-primary text-decoration-none" data-bs-target="#RegistratiModal" data-bs-toggle="modal" >Registrati qui</a>  <a id="anchorDiv" class=" mx-2 text-danger text-decoration-none" data-bs-target="#LoginModal" data-bs-toggle="modal" >Accedi  qui</a>
-      
-      </div>
-      </div>';
-  }
+/* Large desktops and laptops */
+@media (max-width: 800px) {
+  #bg-prova2{
+    padding-top: 2rem;
+    padding-right:3rem;
+ }
+ .mainDiv{
+   padding-left:0rem;
+   margin-top:2rem;
+   margin-bottom:4rem;
   
-?>
-    
+    /* border:2px solid red; */
+ }
+ .mainDiv h6{
+     font-size: 1.1rem;
+ }
+ #imagineres{
+     width:30rem;
+     height:30rem;
+     padding-left:2rem;
+ }
+}
 
-<!-- registrati modal -->
+
+ </style> 
+  <?php
+
+include './navbar.php';
+
+?>
+  <?php
+$idAnnuncio=$_GET['idAnnuncio'];
+include './db.php';
+$sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.idAnnuncio,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Prezzo,annunci.Descrizione,materie.Materia FROM annunci,utenti,materie where annunci.KsUtenti=utenti.idUtente AND annunci.KsMaterie=materie.idMaterie and annunci.idAnnuncio=$idAnnuncio";
+$res=mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($res);
+  
+    $nomeUtente=$row['Nome'];
+    $emailUtente=$row['Email'];
+    $cognomeUtente=$row['Cognome'];
+
+    $nomeLibro=$row['nomeLibro'];
+    $Foto=$row['Foto'];
+    $annoAcquisto=$row['annoAcquisto'];
+    $Descrizione=$row['Descrizione'];
+    $Materie=$row['Materia'];
+    $prezzo=$row['Prezzo'];
+    $idAnnuncio=$row['idAnnuncio'];
+
+?>
+ <div class="container marketing ">
+        <hr class="featurette-divider">
+
+        <div class="row featurette" id="bg-prova">
+            <div class="col-md-7 ">
+                <div id="bg-prova2" class="mainDiv">
+
+                    <h6 class="text-danger"><span class="text-dark t">Il nome del Libro</span> :<b class="text-primary">
+                            <?php echo $nomeLibro; ?></b></h6>
+                    <h6 class="text-danger"><span class="text-dark">Anno di Acquisto del Libro</span> :<b
+                            class="text-primary">
+                            <?php echo $annoAcquisto; ?> </b></h6>
+                    <h6 class="text-danger"><span class="text-dark">Pubblicato da</span> :<b class="text-primary">
+                            <?php echo $nomeUtente; ?></b>
+                    </h6>
+                    <h6 class="text-danger"><span class="text-dark">Email </span>:<b class="text-primary" >
+                        <?php echo $emailUtente; ?></b>
+                        </h6>
+                    <h6 class="text-danger"><span class="text-dark">Costo </span>:<b class="text-primary"> 
+                        <?php echo  $prezzo; ?></b>
+                    </h6>
+                    <h6 class="text-danger"><span class="text-dark">Descrizione </span>:<b class="text-primary"> 
+                        <?php echo $Descrizione; ?></b>
+                    </h6>
+                    <h6 class="text-danger"><span class="text-dark">Materia </span>:<b class="text-primary"> 
+                        <?php echo $Materie; ?></b>
+
+                    </h6>
+                   <!--  <h6 class="text-danger"><span class="text-dark">Contattami su questo numero </span>:<b
+                            class="text-primary"> </b>
+                        <</h6>  -->
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <img id="imagineres" src=" <?php echo $Foto; ?> "
+                    class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="350"
+                    height="350" aria-label="Placeholder: 500x500">
+                <title>Placeholder</title>
+
+                </img>
+
+            </div>
+        </div>
+        <hr class="featurette-divider">
+    </div>
+
+  
+<!-- Studente who posted the ads Modal -->
 <div class="modal fade" id="RegistratiModal" tabindex="-1" aria-labelledby="RegistratiModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -162,11 +186,10 @@ while($dataFetched=mysqli_fetch_assoc($res)){
             </div>
         </div>
     </div>
+   
 
-
-
-<!-- login modal -->
-<div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+    <!-- login modal here -->
+    <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -199,8 +222,11 @@ while($dataFetched=mysqli_fetch_assoc($res)){
         </div>
     </div>
 
+    <!-- /END THE FEATURETTES -->
 
+  
 
+ 
 
 
 
