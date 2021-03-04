@@ -24,7 +24,7 @@ session_start();
    <?php
     
     include './navbar.php';
-
+    error_reporting(E_ERROR | E_PARSE);
   $idUtente= $_SESSION['idUtente'];
 
     if(isset($_GET['inseritoAnnuncioFalito']) && $_GET['inseritoAnnuncioFalito'] == true){
@@ -110,6 +110,13 @@ session_start();
     </div>
 </div>
 
+<!-- footer here -->
+<footer class="footer my-0">
+      <div class="bg-dark container-fluid">
+        <span class="text-light">@copyright.All Rights Reserved</span>
+      </div>
+    </footer>
+  
 <!-- Studente who posted the ads Modal -->
 <div class="modal fade" id="RegistratiModal" tabindex="-1" aria-labelledby="RegistratiModalLabel"
         aria-hidden="true">

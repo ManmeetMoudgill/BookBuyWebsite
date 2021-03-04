@@ -5,7 +5,14 @@ error_reporting(E_ERROR | E_PARSE);
 $idUtentePubblicatoA=$_SESSION['idUtente'];
 
 
-
+if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){
+   
+        ?>
+        <script>
+        document.getElementById('Footer').style.position="sticky";
+        </script>
+        <?php
+}
 
 
 ?>
@@ -22,6 +29,14 @@ $idUtentePubblicatoA=$_SESSION['idUtente'];
     #anchorDiv{
         cursor:pointer;
     }
+    #Footer{
+    position: fixed;
+    left:0;
+    bottom: 0;
+    width: 100%;
+
+}
+   
     </style>
     <title>Marconi Libri Usati 📚 </title>
   </head>
@@ -90,7 +105,13 @@ while($dataFetched=mysqli_fetch_assoc($res)){
   }
   
 ?>
-    
+
+<!-- footer here -->
+<footer id="Footer" class="footer my-0">
+      <div class="bg-dark container-fluid">
+        <span class="text-light">@copyright.All Rights Reserved</span>
+      </div>
+    </footer>
 
 <!-- registrati modal -->
 <div class="modal fade" id="RegistratiModal" tabindex="-1" aria-labelledby="RegistratiModalLabel"

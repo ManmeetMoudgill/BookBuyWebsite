@@ -1,20 +1,15 @@
 <?php
+include'connessione.php.';
 session_start();
-
 ?>
-<!doctype html>
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <?php
- include './db.php';
-
-?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -51,26 +46,60 @@ session_start();
     <link rel="canonical" href="index.html">
     <meta property="og:url" content="index.html">
     <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
 
-    <title>Marconi Libro Vendita</title>
+    <title>Hello, world!</title>
 </head>
 
 <body data-home-page="Home.html" data-home-page-title="Home" class="u-body">
-  
+
+
+
+
     <?php
-    include './navbar.php';
-    
-if(isset($_GET['Signup']) && $_GET['Signup'] == true){
-  $alert= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
-        <strong>Messaggio</strong>Account creato con successo.Puoi Effetuare il login.
+    //NavBar
+    include 'Nav.php';
+
+
+
+
+
+
+
+
+
+
+    //Allert ACCOUNT CREATO CON SUCCESSO
+      if(isset($_GET['Signup']) && $_GET['Signup'] == true){
+          $alert= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
+                <strong>Messaggio</strong> Account creato con successo.Puoi Effetuare il login.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+          echo $alert;
+               if($alert!=""){
+                ?>
+    <script>
+    setTimeout(() => {
+        window.location = "./index.php";
+    }, 2000)
+    </script>
+    <?php
+          }
+      }
+
+     // ALLERT PASSWORD NON CORRISPONDONO
+      else if(isset($_GET['passwordWrong']) && $_GET['passwordWrong'] == true){
+        $alert1= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
+        <strong>Messaggio</strong> Password non corrispondono.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>';
-      echo $alert;
-      if($alert!=""){
+      echo $alert1;
+      if($alert1!=""){
         ?>
     <script>
     setTimeout(() => {
@@ -78,24 +107,11 @@ if(isset($_GET['Signup']) && $_GET['Signup'] == true){
     }, 2000)
     </script>
     <?php
-    }
-}else if(isset($_GET['passwordWrong']) && $_GET['passwordWrong'] == true){
-  $alert1= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
-  <strong>Messaggio</strong>Account creato con successo.Puoi Effetuare il login.
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>';
-echo $alert1;
-if($alert1!=""){
-  ?>
-    <script>
-    setTimeout(() => {
-        window.location = "./index.php";
-    }, 2000)
-    </script>
-    <?php
-}
-
-}else if(isset($_GET['loggedIn']) && $_GET['loggedIn'] == true){
+      }
+      
+      }
+// ALLERT HAI EFFETTUATO IL LOGIN
+ elseif(isset($_GET['loggedIn']) && $_GET['loggedIn'] == true){
     $alert2= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
     <strong>Messaggio</strong>Hai Effetuato il login! 🙂 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -103,46 +119,49 @@ if($alert1!=""){
   echo $alert2;
   if($alert2!=""){
     ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./index.php";
-      }, 2000)
-      </script>
-      <?php
+    <script>
+    setTimeout(() => {
+        window.location = "./index.php";
+    }, 2000)
+    </script>
+    <?php
   }
 }
+//ALLERT PASSWORD SBAGLIATA NELLA FASE DI LOGIN
 else if(isset($_GET['passwordErro']) && $_GET['passwordErro'] == true){
     $alert3= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
-    <strong>Messaggio</strong>Password Errato! 🙂 
+    <strong>Messaggio</strong>Password Errata! 🙂 
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
   echo $alert3;
   if($alert3!=""){
     ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./index.php";
-      }, 2000)
-      </script>
-      <?php
+    <script>
+    setTimeout(() => {
+        window.location = "./index.php";
+    }, 2000)
+    </script>
+    <?php
   }
 }
+//UTENTE NON REGISTRATO.
 else if(isset($_GET['signUpFirst']) && $_GET['signUpFirst'] == true){
     $alert4= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
-    <strong>Messaggio</strong>Registarti Prima!.Risulta Utente non Registrato 
+    <strong>Messaggio</strong>Registarti Prima!
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
   echo $alert4;
   if($alert4!=""){
     ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./index.php";
-      }, 2000)
-      </script>
-      <?php
+    <script>
+    setTimeout(() => {
+        window.location = "./index.php";
+    }, 2000)
+    </script>
+    <?php
   }
 }
+//SEI USCITO DAL TUO ACCOUNT
 else if(isset($_GET['loggedOut']) && $_GET['loggedOut'] == true){
     $alert5= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
     <strong>Messaggio</strong>Sei Uscito dal tuo Account!! Accedi Per Tornare
@@ -151,68 +170,49 @@ else if(isset($_GET['loggedOut']) && $_GET['loggedOut'] == true){
   echo $alert5;
   if($alert5!=""){
     ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./index.php";
-      }, 2000)
-      </script>
-      <?php
+    <script>
+    setTimeout(() => {
+        window.location = "./index.php";
+    }, 2000)
+    </script>
+    <?php
   }
 }
 else if(isset($_GET['inseritoAnnuncio']) && $_GET['inseritoAnnuncio'] == true){
     $alert6= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
-    <strong>Messaggio</strong>Annuncio del libro è stato registrato!!
+    <strong>Messaggio</strong>Annuncio inserito correttamente
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
   echo $alert6;
   if($alert6!=""){
     ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./index.php";
-      }, 2000)
-      </script>
-      <?php
+    <script>
+    setTimeout(() => {
+        window.location = "./index.php";
+    }, 2000)
+    </script>
+    <?php
   }
 }
 else if(isset($_GET['inseritoAnnuncioFalito']) && $_GET['inseritoAnnuncioFalito'] == true){
     $alert7= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
-    <strong>Messaggio</strong>Annucio del libro non è stato registrato, Fallito!.
+    <strong>Messaggio</strong>Inserimento annuncio Fallito
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>';
   echo $alert7;
   if($alert7!=""){
     ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./index.php";
-      }, 2000)
-      </script>
-      <?php
+    <script>
+    setTimeout(() => {
+        window.location = "./index.php";
+    }, 2000)
+    </script>
+    <?php
   }
 }
-else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
-    $alert8= '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
-    <strong>Messaggio</strong>Il formato del imagine risulta non valido!!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>';
-  echo $alert8;
-  if($alert8!=""){
-    ?>
-      <script>
-      setTimeout(() => {
-          window.location = "./index.php";
-      }, 2000)
-      </script>
-      <?php
-  }
-}
-
-
-
 ?>
 
-<section class="u-clearfix u-white u-section-1" id="carousel_f724">
+    <section class="u-clearfix u-white u-section-1" id="carousel_f724">
         <div class="u-clearfix u-sheet u-sheet-1">
             <div style="padding-bottom:100px;" id="carousel-963b" data-interval="2500" data-u-ride="carousel"
                 class="u-carousel u-carousel-duration-4500 u-carousel-fade u-expanded-width u-slider u-slider-1"
@@ -228,7 +228,7 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
                         <div
                             class="u-container-layout u-valign-bottom-md u-valign-bottom-sm u-valign-top-xs u-container-layout-1">
                             <img style="padding-bottom:100px;"
-                                src="./Book.jpg"
+                                src="images/338839b918498ae3b1e22d1d5d88f1ee2bbd5b16d47ecb4fb8495a75f635305cbc9b0cdc4f616e4cbcd4770262e28de5a1a9209cb314ce0ab5fd5b_12801.jpg"
                                 alt="" class="u-image u-image-default u-image-1" data-image-width="1280"
                                 data-image-height="960">
                             <div
@@ -247,7 +247,7 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
                     <div class="u-carousel-item u-container-style u-expanded-width u-slide">
                         <div
                             class="u-container-layout u-valign-bottom-md u-valign-bottom-sm u-valign-top-xs u-container-layout-3">
-                            <img src="./Book1.jpg"
+                            <img src="images/4ab2502ff8ed4a438fb241b3cb8de625ed2fc70f90ab2637a1e1dbee0febe8036e0833b4eafe1db4e5c551a2872d8e053128d9bf84fc3a5bdc30f9_1280.jpg"
                                 alt="" class="u-image u-image-default u-image-2" data-image-width="150"
                                 data-image-height="99">
                             <div
@@ -287,10 +287,12 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
             </div>
         </div>
     </section>
-    <footer style="height:5rem;"class="u-clearfix u-footer u-grey-80" id="sec-d69e">
+
+
+    <footer class="u-clearfix u-footer u-grey-80" id="sec-d69e">
         <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
-                <a class="u-social-url" title="facebook" target="_blank" href="http://www.facebook.com"><span
+                <a class="u-social-url" title="facebook" target="_blank" href=""><span
                         class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link"
                             preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-7ea0"></use>
@@ -300,7 +302,7 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
             c0-6.7,3.1-17,17-17h12.5v13.9H73.5z"></path>
                         </svg></span>
                 </a>
-                <a class="u-social-url" title="twitter" target="_blank" href="https://twitter.com"><span
+                <a class="u-social-url" title="twitter" target="_blank" href=""><span
                         class="u-icon u-icon-circle u-social-icon u-social-twitter u-icon-2"><svg class="u-svg-link"
                             preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-f44a"></use>
@@ -313,7 +315,7 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
             c2.7-0.3,5.3-1,7.7-2.1C88.7,43,86.4,45.4,83.8,47.3z"></path>
                         </svg></span>
                 </a>
-                <a class="u-social-url" title="instagram" target="_blank" href="https://www.instagram.com"><span
+                <a class="u-social-url" title="instagram" target="_blank" href=""><span
                         class="u-icon u-icon-circle u-social-icon u-social-instagram u-icon-3"><svg class="u-svg-link"
                             preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-e68b"></use>
@@ -331,7 +333,7 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
             c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path>
                         </svg></span>
                 </a>
-                <a class="u-social-url" title="linkedin" target="_blank" href="https://www.linkedin.com"><span
+                <a class="u-social-url" title="linkedin" target="_blank" href=""><span
                         class="u-icon u-icon-circle u-social-icon u-social-linkedin u-icon-4"><svg class="u-svg-link"
                             preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-6c54"></use>
@@ -351,81 +353,14 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
     </section>
 
 
-    <!-- login and edit modals here -->
-
-    <!-- signup modal -->
-    <div class="modal fade" id="RegistratiModal" tabindex="-1" aria-labelledby="RegistratiModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="RegistratiModalLabel">Registrati </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="./registrazione.php" method="post">
-                        <div class="mb-3">
-                            <label for="nomeInput" class="form-label">Nome</label>
-                            <input type="text" class="form-control" name="Nome" id="Nome" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cognomeInput" class="form-label">Cognome</label>
-                            <input type="text" class="form-control" name="Cognome" id="Cognome"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="Email" id="Email"
-                                aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="Password" id="Password">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Conferma Password</label>
-                            <input type="password" class="form-control" name="CPassword" id="CPassword">
-                        </div>
-                        <label for="exampleInputPassword1" class="my-1form-label">Città</label>
-                        <select class="form-select" name="cittaSelect" aria-label="Default select example">
-
-                            <?php
-
-                           
-                            $sql="SELECT * FROM `citta`";
-                            $res=mysqli_query($conn,$sql);
-
-                           
-                           while($dataFetched=mysqli_fetch_assoc($res)){
-                             $idCitta=$dataFetched['idCitta'];
-                             $cittaAll=$dataFetched['nomeCitta'];
-                             echo '<option value="'.$idCitta.'">'.$cittaAll.'</option>';
-                           }
 
 
-                         ?>
-                        </select>
-                        <div class="mb-2">
-                            <label for="viaInput" class="form-label">Via</label>
-                            <input type="text" class="form-control" name="Via" id="Via">
-                        </div>
-                        <div class="mb-2">
-                            <label for="NumeroCivicoInput" class="form-label">Numero Civico</label>
-                            <input type="number" class="form-control" name="NumeroCivico" id="NumeroCivico">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-   
 
-    <!-- login modal here -->
+
+
+
+    <!-- fare login -->
+
     <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -434,26 +369,22 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="./loginHandler.php" method="post">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="Email" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <form action="login.php" method="post">
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="Email" class="form-control" name="Email" placeholder="Nome">
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="Password" id="exampleInputPassword1">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" name="Password" placeholder="Password">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
                 </div>
             </div>
         </div>
@@ -462,6 +393,97 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
 
 
 
+    <!-- fare Registrazione -->
+
+
+    <div class="modal fade" id="RegistrationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="registrazione.php" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Nome</label>
+                            <input type="Text" class="form-control" name="Nome" id="Nome" aria-describedby="emailHelp"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cognome</label>
+                            <input type="Text" class="form-control" name="Cognome" id="Cognome"
+                                aria-describedby="emailHelp" required>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="Text" class="form-control" name="Email" id="Telefono"
+                                aria-describedby="emailHelp" required>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Telefono</label>
+                            <input type="Text" class="form-control" name="Telefono" id="Telefono"
+                                aria-describedby="emailHelp" required>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="Password" id="Password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Conferma Password</label>
+                            <input type="password" class="form-control" name="ConfermaPassword" id="ConfermaPassword"
+                                required>
+                        </div>
+
+                        <label class="form-label">Inserisci la tua città</label>
+                        <select class="form-select" name="città" aria-label="Default select example">
+
+                            <?php
+                         
+                          
+                          
+                          $sql="SELECT * FROM `citta`";
+                          $res=mysqli_query($conn,$sql);
+
+                         
+                         while($dataFetched=mysqli_fetch_assoc($res)){
+                           $idCitta=$dataFetched['idCitta'];
+                           $cittaAll=$dataFetched['nomeCitta'];
+                                 
+                            echo '<option value="'.$idCitta.'">'.$cittaAll.'</option>';
+                         }
+                         
+                             ?>
+
+                        </select>
+                        <div class="mb-3">
+                            <label class="form-label">Via</label>
+                            <input type="Text" class="form-control" name="Via" id="Via" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Telefono</label>
+                            <input type="Text" class="form-control" name="Telefono" id="Telefono" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">NumeroCivico</label>
+                            <input type="Number" class="form-control" name="NumeroCivico" id="CAP" required>
+                        </div>
+
+                        <button type="submit" name="create" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
