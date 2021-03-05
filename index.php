@@ -18,39 +18,11 @@ session_start();
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="INTUITIVE, Sample Product">
-    <meta name="description" content="">
-    <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Home</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-    <link rel="stylesheet" href="Home.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-    <meta name="generator" content="Nicepage 3.8.0, nicepage.com">
+  
+   
 
 
-    <link id="u-theme-google-font" rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-    <link id="u-page-google-font" rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700">
 
-
-    <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "Organization",
-        "name": "",
-        "url": "index.html",
-        "sameAs": []
-    }
-    </script>
-
-    <meta property="og:title" content="Home">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#478ac9">
-    <link rel="canonical" href="index.html">
-    <meta property="og:url" content="index.html">
-    <!-- Required meta tags -->
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -212,144 +184,52 @@ else if(isset($_GET['formatoNonValido']) && $_GET['formatoNonValido'] == true){
 
 ?>
 
-<section class="u-clearfix u-white u-section-1" id="carousel_f724">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <div style="padding-bottom:100px;" id="carousel-963b" data-interval="2500" data-u-ride="carousel"
-                class="u-carousel u-carousel-duration-4500 u-carousel-fade u-expanded-width u-slider u-slider-1"
-                data-pause="false">
-                <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
-                    <li data-u-target="#carousel-963b" class="u-active u-grey-30 u-shape-circle" data-u-slide-to="0"
-                        style="height: 10px; width: 10px;"></li>
-                    <li data-u-target="#carousel-963b" class="u-grey-30 u-shape-circle" data-u-slide-to="1"
-                        style="height: 10px; width: 10px;"></li>
-                </ol>
-                <div class="u-carousel-inner" role="listbox">
-                    <div class="u-active u-carousel-item u-container-style u-slide">
-                        <div
-                            class="u-container-layout u-valign-bottom-md u-valign-bottom-sm u-valign-top-xs u-container-layout-1">
-                            <img style="padding-bottom:100px;"
-                                src="./Book.jpg"
-                                alt="" class="u-image u-image-default u-image-1" data-image-width="1280"
-                                data-image-height="960">
-                            <div
-                                class="u-container-style u-expanded-width-sm u-expanded-width-xs u-group u-palette-3-base u-group-1">
-                                <div class="u-container-layout u-container-layout-2">
-                                    <h2 class="u-custom-font u-font-oswald u-text u-text-1">NON È MAI STATO COSÌ
-                                        FACILE&nbsp;VENDERE IL TUO LIBRO </h2>
-                                    <p class="u-text u-text-2">Il portale in cui puoi acquistare e vendere i tuoi libri
-                                        in estrama facilità.</p>
-                                    <a href="InserimentoLibro.php" class="u-btn u-button-style u-white u-btn-1">vendi il
-                                        tuo libro</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="u-carousel-item u-container-style u-expanded-width u-slide">
-                        <div
-                            class="u-container-layout u-valign-bottom-md u-valign-bottom-sm u-valign-top-xs u-container-layout-3">
-                            <img src="./Book1.jpg"
-                                alt="" class="u-image u-image-default u-image-2" data-image-width="150"
-                                data-image-height="99">
-                            <div
-                                class="u-container-style u-expanded-width-sm u-expanded-width-xs u-group u-palette-3-base u-group-2">
-                                <div class="u-container-layout u-valign-middle u-container-layout-4">
-                                    <p class="u-text u-text-3">Qui puoi vendere ed acquistare libri di tutte le materie
-                                        delle scuole superiori .</p>
-                                    <p class="u-text u-text-4">Image from </p>
-                                    <a href="shop.php" class="u-btn u-button-style u-white u-btn-2">visita lo shop</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-opacity u-opacity-70 u-palette-3-base u-spacing-15 u-text-body-color u-carousel-control-1"
-                    href="#carousel-963b" role="button" data-u-slide="prev">
-                    <span aria-hidden="true">
-                        <svg viewBox="0 0 477.175 477.175">
-                            <path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
-                    c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"></path>
-                        </svg>
-                    </span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-opacity u-opacity-70 u-palette-3-base u-spacing-15 u-text-body-color u-carousel-control-2"
-                    href="#carousel-963b" role="button" data-u-slide="next">
-                    <span aria-hidden="true">
-                        <svg viewBox="0 0 477.175 477.175">
-                            <path
-                                d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5
-                    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z">
-                            </path>
-                        </svg>
-                    </span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </section>
-    <footer style="height:5rem;"class="u-clearfix u-footer u-grey-80" id="sec-d69e">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
-                <a class="u-social-url" title="facebook" target="_blank" href="http://www.facebook.com"><span
-                        class="u-icon u-icon-circle u-social-facebook u-social-icon u-icon-1"><svg class="u-svg-link"
-                            preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-7ea0"></use>
-                        </svg><svg class="u-svg-content" id="svg-7ea0" style="color: rgb(59, 89, 152);">
-                            <circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle>
-                            <path fill="#FFFFFF" d="M73.5,31.6h-9.1c-1.4,0-3.6,0.8-3.6,3.9v8.5h12.6L72,58.3H60.8v40.8H43.9V58.3h-8V43.9h8v-9.2
-            c0-6.7,3.1-17,17-17h12.5v13.9H73.5z"></path>
-                        </svg></span>
-                </a>
-                <a class="u-social-url" title="twitter" target="_blank" href="https://twitter.com"><span
-                        class="u-icon u-icon-circle u-social-icon u-social-twitter u-icon-2"><svg class="u-svg-link"
-                            preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-f44a"></use>
-                        </svg><svg class="u-svg-content" id="svg-f44a" style="color: rgb(85, 172, 238);">
-                            <circle fill="currentColor" class="st0" cx="56.1" cy="56.1" r="55"></circle>
-                            <path fill="#FFFFFF" d="M83.8,47.3c0,0.6,0,1.2,0,1.7c0,17.7-13.5,38.2-38.2,38.2C38,87.2,31,85,25,81.2c1,0.1,2.1,0.2,3.2,0.2
-            c6.3,0,12.1-2.1,16.7-5.7c-5.9-0.1-10.8-4-12.5-9.3c0.8,0.2,1.7,0.2,2.5,0.2c1.2,0,2.4-0.2,3.5-0.5c-6.1-1.2-10.8-6.7-10.8-13.1
-            c0-0.1,0-0.1,0-0.2c1.8,1,3.9,1.6,6.1,1.7c-3.6-2.4-6-6.5-6-11.2c0-2.5,0.7-4.8,1.8-6.7c6.6,8.1,16.5,13.5,27.6,14
-            c-0.2-1-0.3-2-0.3-3.1c0-7.4,6-13.4,13.4-13.4c3.9,0,7.3,1.6,9.8,4.2c3.1-0.6,5.9-1.7,8.5-3.3c-1,3.1-3.1,5.8-5.9,7.4
-            c2.7-0.3,5.3-1,7.7-2.1C88.7,43,86.4,45.4,83.8,47.3z"></path>
-                        </svg></span>
-                </a>
-                <a class="u-social-url" title="instagram" target="_blank" href="https://www.instagram.com"><span
-                        class="u-icon u-icon-circle u-social-icon u-social-instagram u-icon-3"><svg class="u-svg-link"
-                            preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-e68b"></use>
-                        </svg><svg class="u-svg-content" id="svg-e68b" style="color: rgb(197, 54, 164);">
-                            <circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle>
-                            <path fill="#FFFFFF"
-                                d="M55.9,38.2c-9.9,0-17.9,8-17.9,17.9C38,66,46,74,55.9,74c9.9,0,17.9-8,17.9-17.9C73.8,46.2,65.8,38.2,55.9,38.2
-            z M55.9,66.4c-5.7,0-10.3-4.6-10.3-10.3c-0.1-5.7,4.6-10.3,10.3-10.3c5.7,0,10.3,4.6,10.3,10.3C66.2,61.8,61.6,66.4,55.9,66.4z">
-                            </path>
-                            <path fill="#FFFFFF"
-                                d="M74.3,33.5c-2.3,0-4.2,1.9-4.2,4.2s1.9,4.2,4.2,4.2s4.2-1.9,4.2-4.2S76.6,33.5,74.3,33.5z">
-                            </path>
-                            <path fill="#FFFFFF" d="M73.1,21.3H38.6c-9.7,0-17.5,7.9-17.5,17.5v34.5c0,9.7,7.9,17.6,17.5,17.6h34.5c9.7,0,17.5-7.9,17.5-17.5V38.8
-            C90.6,29.1,82.7,21.3,73.1,21.3z M83,73.3c0,5.5-4.5,9.9-9.9,9.9H38.6c-5.5,0-9.9-4.5-9.9-9.9V38.8c0-5.5,4.5-9.9,9.9-9.9h34.5
-            c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path>
-                        </svg></span>
-                </a>
-                <a class="u-social-url" title="linkedin" target="_blank" href="https://www.linkedin.com"><span
-                        class="u-icon u-icon-circle u-social-icon u-social-linkedin u-icon-4"><svg class="u-svg-link"
-                            preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style="">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-6c54"></use>
-                        </svg><svg class="u-svg-content" id="svg-6c54" style="color: rgb(0, 122, 185);">
-                            <circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle>
-                            <path fill="#FFFFFF" d="M41.3,83.7H27.9V43.4h13.4V83.7z M34.6,37.9L34.6,37.9c-4.6,0-7.5-3.1-7.5-7c0-4,3-7,7.6-7s7.4,3,7.5,7
-            C42.2,34.8,39.2,37.9,34.6,37.9z M89.6,83.7H76.2V62.2c0-5.4-1.9-9.1-6.8-9.1c-3.7,0-5.9,2.5-6.9,4.9c-0.4,0.9-0.4,2.1-0.4,3.3v22.5
-            H48.7c0,0,0.2-36.5,0-40.3h13.4v5.7c1.8-2.7,5-6.7,12.1-6.7c8.8,0,15.4,5.8,15.4,18.1V83.7z"></path>
-                        </svg></span>
-                </a>
-            </div>
-        </div>
-    </footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-        <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
 
-    </section>
 
+<div class="container">
+
+      <div class="nav-scroller py-1 mb-2">
+      </div>
+
+      <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 font-italic">Non è mai stato cosi semplice vendere il tuo libro</h1>
+          <p class="lead my-3"></p>
+          <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              
+              <h3 class="mb-0">
+                <a class="text-dark text-decoration-none" href="./Shop.php">Visita Shop</a>
+              </h3>
+              <div class="mb-1 text-muted">Nov 12</div>
+              <p class="card-text mb-auto">In questa Sezione ci sono tutti i libri di testo di cui hai bisogno.</p>
+              
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="./Book.jpg" data-holder-rendered="true">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+             
+              <h3 class="mb-0">
+                <a class="text-dark text-decoration-none" href="./InserimentoLibro.php">Inserisci il tuo Annuncio</a>
+              </h3>
+              <div class="mb-1 text-muted">Nov 11</div>
+              <p class="card-text mb-auto">In questa Sezione puoi mettere in vendita tutti i tuoi libri che non usi più.</p>
+             
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="./Book1.jpg" data-holder-rendered="true" style="width: 200px; height: 250px;">
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- login and edit modals here -->
 

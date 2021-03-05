@@ -20,7 +20,7 @@ $idUtente= $_SESSION['idUtente'];
   </head>
   <body>
    <?php
-    
+    include './links.php';
     include './navbar.php';
     if(isset($_GET['annuncioEliminato']) && $_GET['annuncioEliminato'] == true){
       $alert= '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
@@ -54,13 +54,29 @@ $idUtente= $_SESSION['idUtente'];
   }
 }
 ?>
+
 <div class="container">
 <div class=" my-2 row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <?php
 
         include './db.php';
         $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.nomeLibro,annunci.Foto,annunci.idAnnuncio,annunci.annoAcquisto,annunci.Descrizione FROM annunci,utenti where annunci.KsUtenti=utenti.idUtente and utenti.idUtente=$idUtente";
+        
+
+
         $res=mysqli_query($conn,$sql);
+        $ris=mysqli_num_rows($res);
+        if($ris==0){
+          echo '<div class="container my-5">
+          <div class="jumbotron">
+            <h1 class="display-4">Attenzione</h1>
+            <p class="lead">Devi Inserire prima un articolo</p>
+           
+          
+          </div>
+          </div>';
+        }
+        else{
         while($row=mysqli_fetch_assoc($res)){
           
             $nomeUtente=$row['Nome'];
@@ -95,7 +111,7 @@ $idUtente= $_SESSION['idUtente'];
             </div>
             </div>';
         }
-       
+      }
         ?>
     </div>
 </div>

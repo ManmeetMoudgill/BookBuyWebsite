@@ -48,13 +48,14 @@ echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">
                 
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>';
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>';
                     if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){
                         
                         echo ' <button class="mx-1 btn btn btn-primary"><a href="./logout.php" class="text-decoration-none text-light">Esci</a></button>';
                     }
                    echo'
-                </form>
+                
                  </div>
         </div>
     </nav>';
