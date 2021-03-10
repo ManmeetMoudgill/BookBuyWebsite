@@ -67,6 +67,17 @@ session_start();
         include './db.php';
         $sql="SELECT utenti.Nome,utenti.Email,utenti.Cognome,annunci.idAnnuncio,annunci.nomeLibro,annunci.Foto,annunci.annoAcquisto,annunci.Prezzo,annunci.Descrizione,materie.Materia FROM annunci,utenti,materie where annunci.KsUtenti=utenti.idUtente AND annunci.KsMaterie=materie.idMaterie";
         $res=mysqli_query($conn,$sql);
+        $resultRows=mysqli_num_rows($res);
+        if($resultRows==0){
+            echo '<div class="container my-5">
+            <div class="jumbotron">
+              <h1 class="display-4">Attenzione</h1>
+              <p class="lead">Nessun Annuncio Disponibile</p>
+            
+            
+            </div>
+            </div>';
+        }else{
         while($row=mysqli_fetch_assoc($res)){
           
             $nomeUtente=$row['Nome'];
@@ -105,6 +116,7 @@ session_start();
             </div>
             </div>';
         }
+    }
        
         ?>
     </div>
